@@ -6,6 +6,12 @@ int chk_num(int, int*, int);
 void sort_num(int[5][6]);
 
 int main(){
+    FILE* fp = fopen("lotto.txt", "w");
+    if(fp == NULL){
+        fprintf(stderr, "Can't make a file!\n");
+        return 1;
+    }
+
     srand((unsigned)time(NULL)); //시드를 현재시간으로 설정
 
     int lotto[5][6]; //6개의 로또번호를 5개 담을 수 있는 배열
@@ -30,10 +36,11 @@ int main(){
 
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 6; j++)
-            printf("%2d ", lotto[i][j]);
-        printf("\n");
+            fprintf(fp, "%2d ", lotto[i][j]);
+        fprintf(fp, "\n");
     }
 
+    fclose(fp);
     return 0;
 }
 
