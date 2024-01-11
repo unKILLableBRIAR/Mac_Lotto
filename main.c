@@ -3,6 +3,7 @@
 #include <time.h>
 
 int chk_num(int, int*, int);
+void sort_num(int[5][6]);
 
 int main(){
     srand((unsigned)time(NULL)); //시드를 현재시간으로 설정
@@ -25,6 +26,8 @@ int main(){
         }
     }
 
+    sort_num(lotto);
+
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 6; j++)
             printf("%2d ", lotto[i][j]);
@@ -44,4 +47,20 @@ int chk_num(int n, int* arr, int cnt){
         return 1;
     else
         return 0;
+}
+
+void sort_num(int arr[5][6]){
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            int flag = arr[i][j];
+            for(int k = j + 1; k < 6; k++){
+                if(arr[i][k] < flag){
+                    int tmp = arr[i][k];
+                    arr[i][k] = flag;
+                    flag = tmp;
+                    arr[i][j] = flag;
+                }
+            }
+        }
+    }
 }
